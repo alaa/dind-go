@@ -1,4 +1,4 @@
-FROM docker:19.03.12-dind
+FROM docker:20.10.5-dind
 ENV GOLANG_VERSION 1.16.2
 
 #
@@ -51,3 +51,8 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["sh"]
+
